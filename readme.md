@@ -42,3 +42,8 @@ So far,
 - feature file
 - step definitions
 - runner class
+
+
+
+Terms,
+- Step undefined

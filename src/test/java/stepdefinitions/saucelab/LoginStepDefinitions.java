@@ -16,9 +16,9 @@ public class LoginStepDefinitions {
 
   @Given("user lands on the login page")
   public void user_lands_on_the_login_page() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-    driver.get("https://www.saucedemo.com/");
+
+//    driver.get("https://www.saucedemo.com/");
+    System.out.println("This feature is running");
   }
   @When("user enters valid username")
   public void user_enters_valid_username() {
