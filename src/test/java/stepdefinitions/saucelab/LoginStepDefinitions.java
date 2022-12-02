@@ -1,5 +1,6 @@
 package stepdefinitions.saucelab;
 
+import PageObjects.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,19 +11,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utils.Driver;
 
 public class LoginStepDefinitions {
   WebDriver driver;
+  private LoginPage loginPage = new LoginPage();
 
   @Given("user lands on the login page")
   public void user_lands_on_the_login_page() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
+    driver = Driver.getDriver();
     driver.get("https://www.saucedemo.com/");
   }
-  @When("user enters valid username")
-  public void user_enters_valid_username() {
-    driver.findElement(By.xpath("//*[@id='user-name']")).sendKeys("standard_user");
+  @When("user enters username {string}")
+  public void user_enters_valid_username(String username) {
+    loginPage.enterUsername(username);
   }
   @When("user enters valid password")
   public void user_enters_valid_password() {
