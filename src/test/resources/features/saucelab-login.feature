@@ -3,7 +3,7 @@ Feature: User able to login
     # add steps
     Given user lands on the login page
     When user enters username "standard_user"
-#    And user enters valid password
+    And user enters password "secret_sauce"
 #    And user clicks on the login button
 #    Then user should land on the product page
 #

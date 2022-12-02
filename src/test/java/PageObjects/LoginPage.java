@@ -3,7 +3,7 @@ package PageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.Driver;
+import factories.Driver;
 
 public class LoginPage {
   public LoginPage() {
@@ -14,6 +14,8 @@ public class LoginPage {
   public WebElement usernameInput;
   @FindBy(xpath = "//*[@id='password']")
   public WebElement passwordInput;
+  @FindBy(xpath = "//*[@id='login-button']")
+  public WebElement loginBtn;
 
   public void enterUsername(String username) {
     usernameInput.sendKeys(username);
