@@ -1,5 +1,6 @@
 package stepdefinitions.saucelab;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,45 +12,48 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 public class LoginStepDefinitions {
   WebDriver driver;
 
   @Given("user lands on the login page")
   public void user_lands_on_the_login_page() {
 
-//    driver.get("https://www.saucedemo.com/");
-    System.out.println("This feature is running");
+    System.out.println("Go to Login Page");
   }
-  @When("user enters valid username")
-  public void user_enters_valid_username() {
-    driver.findElement(By.xpath("//*[@id='user-name']")).sendKeys("standard_user");
+  @When("user enters username {string}")
+  public void user_enters_valid_username(String username) {
+    System.out.println("User enter username: " + username);
   }
-  @When("user enters valid password")
-  public void user_enters_valid_password() {
-    driver.findElement(By.xpath("//*[@id='password']")).sendKeys("secret_sauce");
+  @When("user enters password {string}")
+  public void user_enters_valid_password(String password) {
+    System.out.println("User enter username: " + password);
   }
   @Then("user should land on the product page")
   public void user_should_land_on_the_product_page() {
-    String actualTitle = driver.findElement(By.xpath("//*[@class='title']")).getText();
-    Assert.assertEquals("PRODUCTS",actualTitle);
+    System.out.println("Verify that use is on Product Page");
   }
   @And("user clicks on the login button")
   public void userClicksOnTheLoginButton() {
-    driver.findElement(By.xpath("//*[@id='login-button']")).click();
+    System.out.println("Click Login button");
   }
 
-  @When("user enters invalid username")
-  public void userEntersInvalidUsername() {
-    driver.findElement(By.xpath("//*[@id='user-name']")).sendKeys("invalid_user");
+  @Then("user should see warning message {string}")
+  public void userShouldSeeWarningMessage(String errorMsg) {
+    System.out.println("Verify that " + errorMsg + " is displayed");
   }
-  @Then("user should see warning message")
-  public void userShouldSeeWarningMessage() {
-    WebElement element = driver.findElement(By.cssSelector("[data-test=\"error\"]"));
-    Assert.assertTrue("Error should be displayed", element.isDisplayed());
+  @Then("user should see following menus")
+  public void userShouldSeeFollowingMenus(DataTable dataTable) {
+    List<String> menus = dataTable.asList();
+    for (String menu : menus) {
+      System.out.println(menu);
+    }
   }
-  @And("user enters invalid password")
-  public void userEntersInvalidPassword() {
 
+  @Given("user land on {string}")
+  public void navigateTo(String website) {
+    System.out.println("User navigate to " + website);
   }
 }
 
